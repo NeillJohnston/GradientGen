@@ -1,0 +1,41 @@
+/* General stuff */
+* {
+    font-family: "Courier New";
+    text-align: center;
+}
+h1 {
+    font-weight: normal;
+}
+a {
+    color: black;
+}
+a:visited {
+    color: black;
+}
+canvas {
+    border: 1px solid gray;
+}
+
+/* Inputs */
+form {
+    margin-left: 35%;
+    width: 30%;
+}
+input {
+    margin: 0;
+}
+div.row {
+    width: 100%;
+}
+input[type=color] {
+    display: table-cell;
+    width: 33.3334%;
+    padding: 0;
+    border: 0;
+}
+#bg {
+    width: 100%;
+}
+input[type=number] {
+    width: inherit;
+}

@@ -1,0 +1,23 @@
+<head>
+    <title>gradientgen</title>
+    <link rel="icon" href="favicon.png">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+</head>
+<body onload="load()">
+    <h1>gradientgen</h1>
+    <form>
+        <input type="color" value="#ffffff" onchange="update()" id="bg"><br>
+        <div id="colors">
+            <input type="color" value="#ff0000" onchange="update()" id="0">
+            <input type="color" value="#00ff00" onchange="update()" id="1">
+            <input type="color" value="#0000ff" onchange="update()" id="2">
+        </div><br>
+        size <input type="number" value="250" min="0" step="50" onchange="update()" id="size"><br>
+        rot. <input type="number" value="0" min="0" max="359" onchange="update()" id="rot"><br>
+        res. <input type="number" value="10" min="1" max="100" onchange="update()" id="res"><br>
+    </form>
+    <canvas id="display"></canvas><br><br>
+    made by <a href="https://github.com/NeillJohnston">Neill Johnston</a>
+    <script type="text/javascript" src="gradientgen.js"></script>
+</body>
