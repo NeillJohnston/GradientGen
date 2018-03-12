@@ -62,7 +62,7 @@ function distance(x, y, theta) {
     b = -Math.sin(theta);
     c = p.y*Math.sin(theta) - p.x*Math.cos(theta);
     d = Math.abs(a*x + b*y + c) / Math.sqrt(a*a + b*b);
-    return d;
+    return d
 }
 
 // Convert hex string to rgb values (credit to Tim Down on Stackoverflow)
@@ -79,15 +79,25 @@ function rgb(color) {
 function genPixel(x, y) {
     pixel = rgb(form.bg.value);
     
+    blend = [0, 0, 0];
+    alpha = 0;
+    
     for(var n = 0; n < form.colors.length; n++) {
         color = rgb(form.colors[n].value);
         theta = n * 360/form.colors.length + rot.value;
         d = distance(x, y, theta);
-        // Simple normal mode blending with alpha
-        a = Math.max(1 - (d / (size)), 0);
-        pixel[0] = pixel[0]*(1-a) + color[0]*a;
-        pixel[1] = pixel[1]*(1-a) + color[1]*a;
-        pixel[2] = pixel[2]*(1-a) + color[2]*a;
+        a = Math.max(1 - (d / (5/4 * size)), 0);
+        
+        // Complex blending that evenly blends the gradient colors, then normals with the background color
+        for(var m = 0; m <= 2; m++) {
+            blend[m] += a*color[m];
+        }
+        alpha += a;
+    }
+    
+    alpha = Math.min(alpha, 1);
+    for(var m = 0; m <= 2; m++) {
+        pixel[m] = pixel[m]*(1-alpha) + blend[m]*alpha;
     }
     
     return "rgba("+pixel[0]+","+pixel[1]+","+pixel[2]+",255)"
